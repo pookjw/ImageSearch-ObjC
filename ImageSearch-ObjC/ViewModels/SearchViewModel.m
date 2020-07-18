@@ -14,11 +14,15 @@
         @"documents": @[
                 @{
                     @"display_sitename": @"Demo1",
-                    @"doc_url": @"https://github.com/pookjw"
+                    @"doc_url": @"http://informluke.tistory.com/47",
+                    @"image_url": @"http://cfile9.uf.tistory.com/image/99D9193B5EA7F2B5123797",
+                    @"thumbnail_url": @"https://search1.kakaocdn.net/argon/130x130_85_c/9pAuRoSkaNA"
                 },
                 @{
                     @"display_sitename": @"Demo2",
-                    @"doc_url": @"https://github.com/pookjw"
+                    @"doc_url": @"https://github.com/pookjw",
+                    @"image_url": @"https://pds.joins.com/news/component/htmlphoto_mmdata/201902/21/1ab789f1-0f98-447d-8c74-791eb56793e8.jpg",
+                    @"thumbnail_url": @"https://search1.kakaocdn.net/argon/130x130_85_c/Fpo7UH3l5G0"
                 }
         ]
     };

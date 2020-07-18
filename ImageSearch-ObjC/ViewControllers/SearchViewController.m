@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "UIImage+Resize.h"
 
 @implementation SearchViewController
 
@@ -18,11 +19,11 @@
 
 - (void)setup {
     self.title = @"Search";
-    self.navigationController.navigationBar.prefersLargeTitles = YES;
+    self.navigationController.navigationBar.prefersLargeTitles = NO;
     self.view.backgroundColor = UIColor.systemBackgroundColor;
     
     self.tableView = [[UITableView alloc] init];
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.tableView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
@@ -39,12 +40,27 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    cell.textLabel.text = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
-    cell.imageView.image = [UIImage systemImageNamed:@"gear"];
-    cell.detailTextLabel.text = self.viewModel.searchResult[@"documents"][indexPath.row][@"doc_url"];
+    UITableViewCell __block *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    UIImage *placeholder = [UIImage imageWithImage:[[UIImage alloc] init] scaledToFillSize:CGSizeMake(57, 57)];
+    NSString *title = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
+    NSString *url = self.viewModel.searchResult[@"documents"][indexPath.row][@"doc_url"];
+    
+    cell.imageView.image = placeholder;
+    if ([title isEqualToString:@""]) {
+        cell.textLabel.text = @"(noname)";
+    } else {
+        cell.textLabel.text = title;
+    }
+    cell.detailTextLabel.text = url;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: self.viewModel.searchResult[@"documents"][indexPath.row][@"thumbnail_url"]]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.imageView.image = [UIImage imageWithData: imageData];
+        });
+    });
+    
     return cell;
 }
 
