@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FavoritesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property UITableView *tableView;
-- (void)setupUI;
+- (void)setup;
 @end
 
 NS_ASSUME_NONNULL_END

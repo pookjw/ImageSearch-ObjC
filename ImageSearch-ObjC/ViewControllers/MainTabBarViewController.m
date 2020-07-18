@@ -14,10 +14,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
+    [self setup];
 }
 
-- (void)setupUI {
+- (void)setup {
     self.searchViewController = [[SearchViewController alloc] init];
     self.favoritesViewController = [[FavoritesViewController alloc] init];
     

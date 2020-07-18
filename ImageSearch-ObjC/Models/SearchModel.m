@@ -30,7 +30,6 @@
     NSURL *finalURL = components.URL;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:finalURL];
     [request setValue:[NSString stringWithFormat:@"KakaoAK %@", self.apiKey] forHTTPHeaderField:@"Authorization" ];
-    NSLog(@"%@", request.allHTTPHeaderFields);
     request.HTTPMethod = @"GET";
     
     // NSURLSessionConfiguration.defaultSessionConfiguration

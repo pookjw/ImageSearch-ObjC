@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UINavigationController *secondNavigationController;
 @property SearchViewController *searchViewController;
 @property FavoritesViewController *favoritesViewController;
-- (void)setupUI;
+- (void)setup;
 @end
 
 NS_ASSUME_NONNULL_END

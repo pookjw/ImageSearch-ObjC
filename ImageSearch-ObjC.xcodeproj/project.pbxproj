@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F324E1F524C208C8002CA21E /* SearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F324E1F424C208C8002CA21E /* SearchViewModel.m */; };
 		F324E1FF24C2F05F002CA21E /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = F324E1FE24C2F05F002CA21E /* UIImage+Resize.m */; };
+		F324E20224C2F201002CA21E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F324E20124C2F201002CA21E /* PhotoViewController.m */; };
 		F34072DE24C1A7B3003E7795 /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34072DD24C1A7B3003E7795 /* MainTabBarViewController.m */; };
 		F34072E124C1A7DA003E7795 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34072E024C1A7DA003E7795 /* SearchViewController.m */; };
 		F34072E424C1A7E4003E7795 /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34072E324C1A7E4003E7795 /* FavoritesViewController.m */; };
@@ -25,6 +26,8 @@
 		F324E1F424C208C8002CA21E /* SearchViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewModel.m; sourceTree = "<group>"; };
 		F324E1FD24C2F05F002CA21E /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		F324E1FE24C2F05F002CA21E /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		F324E20024C2F201002CA21E /* PhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		F324E20124C2F201002CA21E /* PhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		F34072DC24C1A7B3003E7795 /* MainTabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTabBarViewController.h; sourceTree = "<group>"; };
 		F34072DD24C1A7B3003E7795 /* MainTabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTabBarViewController.m; sourceTree = "<group>"; };
 		F34072DF24C1A7DA003E7795 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				F34072E024C1A7DA003E7795 /* SearchViewController.m */,
 				F34072E224C1A7E4003E7795 /* FavoritesViewController.h */,
 				F34072E324C1A7E4003E7795 /* FavoritesViewController.m */,
+				F324E20024C2F201002CA21E /* PhotoViewController.h */,
+				F324E20124C2F201002CA21E /* PhotoViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				F3A1BC9124C1A4910023F2B9 /* main.m in Sources */,
 				F324E1F524C208C8002CA21E /* SearchViewModel.m in Sources */,
 				F3A1BC8324C1A4900023F2B9 /* SceneDelegate.m in Sources */,
+				F324E20224C2F201002CA21E /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

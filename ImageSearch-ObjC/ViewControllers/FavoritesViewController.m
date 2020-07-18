@@ -12,10 +12,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupUI];
+    [self setup];
 }
 
--(void)setupUI {
+-(void)setup {
     self.title = @"Favorites";
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.view.backgroundColor = UIColor.systemBackgroundColor;

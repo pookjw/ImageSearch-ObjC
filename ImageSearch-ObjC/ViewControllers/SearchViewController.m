@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "PhotoViewController.h"
 #import "UIImage+Resize.h"
 
 @implementation SearchViewController
@@ -19,17 +20,17 @@
 
 - (void)setup {
     self.title = @"Search";
-    self.navigationController.navigationBar.prefersLargeTitles = NO;
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
     self.view.backgroundColor = UIColor.systemBackgroundColor;
     
     self.tableView = [[UITableView alloc] init];
     //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.tableView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor].active = YES;
-    [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
-    [self.tableView.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = YES;
-    [self.tableView.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = YES;
+    [self.tableView.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
+    [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
+    [self.tableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
+    [self.tableView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -40,18 +41,18 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UITableViewCell __block *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     UIImage *placeholder = [UIImage imageWithImage:[[UIImage alloc] init] scaledToFillSize:CGSizeMake(57, 57)];
-    NSString *title = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
-    NSString *url = self.viewModel.searchResult[@"documents"][indexPath.row][@"doc_url"];
+    NSString *display_sitename = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
+    NSString *doc_url = self.viewModel.searchResult[@"documents"][indexPath.row][@"doc_url"];
     
     cell.imageView.image = placeholder;
-    if ([title isEqualToString:@""]) {
-        cell.textLabel.text = @"(noname)";
+    if ([display_sitename isEqualToString:@""]) {
+        cell.textLabel.text = @"(no display_sitename)";
     } else {
-        cell.textLabel.text = title;
+        cell.textLabel.text = display_sitename;
     }
-    cell.detailTextLabel.text = url;
+    cell.detailTextLabel.text = doc_url;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -72,22 +73,33 @@
     return [self.viewModel.searchResult[@"documents"] count];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoViewController *viewController = [[PhotoViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    
+    viewController.display_sitename = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
+    viewController.image_url = [NSURL URLWithString:self.viewModel.searchResult[@"documents"][indexPath.row][@"image_url"]];
+    [self presentViewController:navigationController animated:YES completion:^{
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }];
+//    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//    [cell setSelected:NO animated:YES];
+}
+
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
     NSString * _Nonnull text = searchBar.text;
     [self.viewModel request:text pageAt:@1 completionHandler:^(NSDictionary * _Nonnull dic) {
-        NSLog(@"%@", dic);
         dispatch_async(dispatch_get_main_queue(), ^{
             self.title = text;
             self.viewModel.searchResult = dic;
-            NSLog(@"%@", dic);
             [self.tableView reloadData];
         });
     } errorHandler:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
+        NSLog(@"%@", error.localizedDescription);
     }];
+    [searchBar resignFirstResponder];
     [self.searchController setActive:NO];
 }
 
