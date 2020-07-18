@@ -7,6 +7,7 @@
 //
 
 #import "PhotoViewController.h"
+#import "WebViewController.h"
 
 @implementation PhotoViewController
 
@@ -20,6 +21,9 @@
     self.navigationController.navigationBar.prefersLargeTitles = NO;
     self.view.backgroundColor = UIColor.systemBackgroundColor;
     
+    self.doneBtton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
+    self.navigationItem.rightBarButtonItem = self.doneBtton;
+    
     self.imageView = [[UIImageView alloc] init];
     [self.view addSubview:self.imageView];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -31,14 +35,17 @@
     [self.imageView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
     
     self.toolBar = [[UIToolbar alloc] init];
+    self.saveButton = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"square.and.arrow.down"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.firstFlexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    self.starButton = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"star"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.secondFlexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    self.safariButton = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"safari"] style:UIBarButtonItemStylePlain target:self action:@selector(pressedSafariButton)];
     [self.view addSubview:self.toolBar];
     self.toolBar.translatesAutoresizingMaskIntoConstraints = NO;
     [self.toolBar.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
     [self.toolBar.leadingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.leadingAnchor].active = YES;
     [self.toolBar.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor].active = YES;
-    
-    self.rightBtton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(rightButtonPressed)];
-    self.navigationItem.rightBarButtonItem = self.rightBtton;
+    [self.toolBar setItems:@[self.saveButton, self.firstFlexibleItem, self.starButton, self.secondFlexibleItem, self.safariButton]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -46,7 +53,7 @@
     [self loadImage];
 }
 
-- (void)rightButtonPressed {
+- (void)doneButtonPressed {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -57,6 +64,12 @@
             self.imageView.image = [UIImage imageWithData: imageData];
         });
     });
+}
+
+- (void)pressedSafariButton {
+    WebViewController *vc = [[WebViewController alloc] init];
+    vc.url = self.doc_url;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -16,11 +16,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSURL *doc_url;
 
 @property UIImageView *imageView;
-@property UIBarButtonItem *rightBtton;
+@property UIBarButtonItem *doneBtton;
+
 @property UIToolbar *toolBar;
+@property UIBarButtonItem *saveButton;
+@property UIBarButtonItem *firstFlexibleItem;
+@property UIBarButtonItem *starButton;
+@property UIBarButtonItem *secondFlexibleItem;
+@property UIBarButtonItem *safariButton;
+
 -(void)setup;
--(void)rightButtonPressed;
+-(void)doneButtonPressed;
 -(void)loadImage;
+-(void)pressedSafariButton;
 @end
 
 NS_ASSUME_NONNULL_END

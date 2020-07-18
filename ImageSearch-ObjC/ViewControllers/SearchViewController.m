@@ -79,6 +79,7 @@
     
     viewController.display_sitename = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
     viewController.image_url = [NSURL URLWithString:self.viewModel.searchResult[@"documents"][indexPath.row][@"image_url"]];
+    viewController.doc_url = [NSURL URLWithString:self.viewModel.searchResult[@"documents"][indexPath.row][@"doc_url"]];
     [self presentViewController:navigationController animated:YES completion:^{
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }];
