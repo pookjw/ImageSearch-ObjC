@@ -10,6 +10,11 @@
 
 @implementation WebViewController
 
+-(instancetype)init {
+    self.viewModel = [[WebViewModel alloc] init];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
@@ -45,7 +50,7 @@
     
     [self reloadToolBarImages];
     
-    self.request = [[NSMutableURLRequest alloc] initWithURL:self.url];
+    self.request = [[NSMutableURLRequest alloc] initWithURL:self.viewModel.url];
     self.request.HTTPMethod = @"POST";
     [self.wkWebView loadRequest:self.request];
 }
@@ -71,12 +76,12 @@
 }
 
 - (void)pressedShareButton {
-    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[[self.wkWebView URL]] applicationActivities:nil];
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[self.wkWebView.URL] applicationActivities:nil];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)pressedSafariButton{
-    [UIApplication.sharedApplication openURL:self.url options:@{} completionHandler:nil];
+    [self.viewModel openSafari:self.wkWebView.URL];
 }
 
 - (void)reloadToolBarImages {

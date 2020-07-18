@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PhotoViewController : UIViewController
-@property NSString *display_sitename;
-@property NSURL *image_url;
-@property NSURL *doc_url;
+
+@property PhotoViewModel *viewModel;
 
 @property UIImageView *imageView;
 @property UIBarButtonItem *doneBtton;
@@ -26,8 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UIBarButtonItem *safariButton;
 
 -(void)setup;
--(void)doneButtonPressed;
--(void)loadImage;
+-(void)pressedDoneButton;
 -(void)pressedSafariButton;
 @end
 

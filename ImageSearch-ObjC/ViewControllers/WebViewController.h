@@ -8,14 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
+#import "WebViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WebViewController : UIViewController<WKNavigationDelegate>
+@property WebViewModel *viewModel;
+
 @property WKWebView *wkWebView;
 @property UIBarButtonItem *doneButton;
-
-@property NSURL *url;
 @property NSMutableURLRequest *request;
 
 @property UIToolbar *toolBar;

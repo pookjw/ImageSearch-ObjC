@@ -11,17 +11,22 @@
 
 @implementation PhotoViewController
 
+- (instancetype)init {
+    self.viewModel = [[PhotoViewModel alloc] init];
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
 }
 
 - (void)setup {
-    self.title = self.display_sitename;
+    self.title = self.viewModel.display_sitename;
     self.navigationController.navigationBar.prefersLargeTitles = NO;
     self.view.backgroundColor = UIColor.systemBackgroundColor;
     
-    self.doneBtton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
+    self.doneBtton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(pressedDoneButton)];
     self.navigationItem.rightBarButtonItem = self.doneBtton;
     
     self.imageView = [[UIImageView alloc] init];
@@ -50,25 +55,20 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self loadImage];
-}
-
-- (void)doneButtonPressed {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)loadImage {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL: self.image_url];
+    [self.viewModel loadImage:self.viewModel.image_url completionHandler:^(UIImage * image){
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.imageView.image = [UIImage imageWithData: imageData];
+            self.imageView.image = image;
         });
-    });
+    }];
+}
+
+- (void)pressedDoneButton {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)pressedSafariButton {
     WebViewController *vc = [[WebViewController alloc] init];
-    vc.url = self.doc_url;
+    vc.viewModel.url = self.viewModel.doc_url;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
