@@ -9,6 +9,10 @@
 #import "WebViewModel.h"
 
 @implementation WebViewModel
+- (void)dealloc {
+    NSLog(@"deallocated: WebViewModel");
+}
+
 -(void)openSafari:(NSURL *)url {
     [UIApplication.sharedApplication openURL:url options:@{} completionHandler:nil];
 }

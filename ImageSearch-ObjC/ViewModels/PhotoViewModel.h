@@ -12,9 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PhotoViewModel : NSObject
-@property NSString *display_sitename;
-@property NSURL *image_url;
-@property NSURL *doc_url;
+@property NSDictionary *dic;
 
 -(void)loadImage:(NSURL *)url completionHandler:(void(^)(UIImage * _Nonnull))completionHandler;
 @end

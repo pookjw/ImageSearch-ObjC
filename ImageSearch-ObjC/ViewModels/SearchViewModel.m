@@ -30,6 +30,10 @@
     return self;
 }
 
+- (void)dealloc {
+    NSLog(@"deallocated: SearchViewModel");
+}
+
 -(void)request:(NSString *)text pageAt:(NSNumber *)page completionHandler:(void (^)(NSDictionary * _Nonnull))completionHandler errorHandler:(void (^)(NSError * _Nonnull))errorHandler {
     [self.model request:text pageAt:page completionHandler:completionHandler errorHandler:errorHandler];
 }

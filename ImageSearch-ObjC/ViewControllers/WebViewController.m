@@ -15,6 +15,10 @@
     return self;
 }
 
+- (void)dealloc {
+    NSLog(@"deallocated: WebViewController");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
@@ -50,7 +54,8 @@
     
     [self reloadToolBarImages];
     
-    self.request = [[NSMutableURLRequest alloc] initWithURL:self.viewModel.url];
+    NSURL *doc_url = [NSURL URLWithString:self.viewModel.dic[@"doc_url"]];
+    self.request = [[NSMutableURLRequest alloc] initWithURL:doc_url];
     self.request.HTTPMethod = @"POST";
     [self.wkWebView loadRequest:self.request];
 }

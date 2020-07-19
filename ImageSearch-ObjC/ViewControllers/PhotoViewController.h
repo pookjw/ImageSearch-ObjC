@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotoViewModel.h"
+#import "FavoriteModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PhotoViewController : UIViewController
+@interface PhotoViewController : UIViewController<FavoriteDelegate>
 
 @property PhotoViewModel *viewModel;
 
@@ -27,7 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)setup;
 -(void)pressedDoneButton;
+-(void)pressedStarButton;
 -(void)pressedSafariButton;
+- (void)updateFavoritedStatus;
+- (void)reloadFavoritesWhenChanged;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,6 +17,10 @@
     return self;
 }
 
+- (void)dealloc {
+    NSLog(@"deallocated: SearchModel");
+}
+
 -(void)request:(NSString *)text pageAt:(NSNumber *)page completionHandler:(void (^)(NSDictionary * _Nonnull))completionHandler errorHandler:(void (^)(NSError * _Nonnull))errorHandler {
     NSURLComponents *components = [[NSURLComponents alloc] initWithURL:self.API resolvingAgainstBaseURL:YES];
     

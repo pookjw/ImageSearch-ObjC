@@ -22,6 +22,16 @@
     [self setup];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [FavoriteModel.sharedInstance registerObject:self];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [FavoriteModel.sharedInstance unregisterObject:self];
+}
+
 - (void)setup {
     self.title = @"Search";
     self.navigationController.navigationBar.prefersLargeTitles = YES;
@@ -46,9 +56,10 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    NSDictionary *dic = self.viewModel.searchResult[@"documents"][indexPath.row];
     UIImage *placeholder = [UIImage imageWithImage:[[UIImage alloc] init] scaledToFillSize:CGSizeMake(57, 57)];
-    NSString *display_sitename = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
-    NSString *doc_url = self.viewModel.searchResult[@"documents"][indexPath.row][@"doc_url"];
+    NSString *display_sitename = dic[@"display_sitename"];
+    NSString *doc_url = dic[@"doc_url"];
     
     cell.imageView.image = placeholder;
     if ([display_sitename isEqualToString:@""]) {
@@ -58,6 +69,12 @@
     }
     cell.detailTextLabel.text = doc_url;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if ([[FavoriteModel.sharedInstance isFavorited:dic][@"favorited"] boolValue]) {
+        cell.textLabel.textColor = UIColor.systemOrangeColor;
+    } else {
+        cell.textLabel.textColor = UIColor.labelColor;
+    }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: self.viewModel.searchResult[@"documents"][indexPath.row][@"thumbnail_url"]]];
@@ -81,9 +98,7 @@
     PhotoViewController *viewController = [[PhotoViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     
-    viewController.viewModel.display_sitename = self.viewModel.searchResult[@"documents"][indexPath.row][@"display_sitename"];
-    viewController.viewModel.image_url = [NSURL URLWithString:self.viewModel.searchResult[@"documents"][indexPath.row][@"image_url"]];
-    viewController.viewModel.doc_url = [NSURL URLWithString:self.viewModel.searchResult[@"documents"][indexPath.row][@"doc_url"]];
+    viewController.viewModel.dic = self.viewModel.searchResult[@"documents"][indexPath.row];
     [self presentViewController:navigationController animated:YES completion:^{
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }];
@@ -106,6 +121,10 @@
     }];
     [searchBar resignFirstResponder];
     [self.searchController setActive:NO];
+}
+
+- (void)reloadFavoritesWhenChanged {
+    [self.tableView reloadData];
 }
 
 @end

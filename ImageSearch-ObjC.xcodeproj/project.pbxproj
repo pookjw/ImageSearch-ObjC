@@ -21,6 +21,7 @@
 		F3A1BC9124C1A4910023F2B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A1BC9024C1A4910023F2B9 /* main.m */; };
 		F3EE276324C33A4900070D23 /* PhotoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE276224C33A4900070D23 /* PhotoViewModel.m */; };
 		F3EE276624C33A5400070D23 /* WebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE276524C33A5400070D23 /* WebViewModel.m */; };
+		F3EE276924C34A7B00070D23 /* FavoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE276824C34A7B00070D23 /* FavoriteModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,9 @@
 		F3EE276224C33A4900070D23 /* PhotoViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoViewModel.m; sourceTree = "<group>"; };
 		F3EE276424C33A5400070D23 /* WebViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewModel.h; sourceTree = "<group>"; };
 		F3EE276524C33A5400070D23 /* WebViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewModel.m; sourceTree = "<group>"; };
+		F3EE276724C34A7B00070D23 /* FavoriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteModel.h; sourceTree = "<group>"; };
+		F3EE276824C34A7B00070D23 /* FavoriteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteModel.m; sourceTree = "<group>"; };
+		F3EE276A24C34AA300070D23 /* FavoriteDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,9 @@
 			children = (
 				F34072E624C1B10D003E7795 /* SearchModel.h */,
 				F34072E724C1B10D003E7795 /* SearchModel.m */,
+				F3EE276724C34A7B00070D23 /* FavoriteModel.h */,
+				F3EE276824C34A7B00070D23 /* FavoriteModel.m */,
+				F3EE276A24C34AA300070D23 /* FavoriteDelegate.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,6 +235,7 @@
 				F324E1F524C208C8002CA21E /* SearchViewModel.m in Sources */,
 				F3A1BC8324C1A4900023F2B9 /* SceneDelegate.m in Sources */,
 				F324E20224C2F201002CA21E /* PhotoViewController.m in Sources */,
+				F3EE276924C34A7B00070D23 /* FavoriteModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

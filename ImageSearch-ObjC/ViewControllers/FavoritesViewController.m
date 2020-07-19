@@ -7,8 +7,13 @@
 //
 
 #import "FavoritesViewController.h"
+#import "FavoriteModel.h"
 
 @implementation FavoritesViewController
+
+- (instancetype)init {
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,6 +50,5 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
 
 @end
