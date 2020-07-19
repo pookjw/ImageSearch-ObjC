@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FavoritesModel : NSObject
 @property (nonatomic) NSMutableArray<id<FavoritesDelegate>> *objects;
 @property (nonatomic) NSMutableArray<NSDictionary*> * favorites;
+@property NSURL * localUrl;
 +(instancetype)sharedInstance;
 -(void)invokeObjectsMethods;
 -(void)registerObject:(id<FavoritesDelegate>)object;

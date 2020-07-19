@@ -13,7 +13,27 @@
 -(instancetype)init {
     self.objects = [[NSMutableArray alloc] init];
     self.favorites = [[NSMutableArray alloc] init];
+    
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    self.localUrl = [[[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0] URLByAppendingPathComponent:@"favorites"] URLByAppendingPathExtension:@"json"];
+    
+    if ([fileManager fileExistsAtPath:[self.localUrl path]]) {
+        [self loadFromLocal];
+    } else {
+        [self saveToLocal];
+    }
+    
     return self;
+}
+
+-(void)loadFromLocal {
+    NSData *data = [NSData dataWithContentsOfURL:self.localUrl];
+    self.favorites = [[NSJSONSerialization JSONObjectWithData:data options:0 error:nil] mutableCopy];
+}
+
+-(void)saveToLocal {
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self.favorites options:NSJSONWritingPrettyPrinted error:nil];
+    [data writeToURL:self.localUrl atomically:YES];
 }
 
 +(instancetype)sharedInstance {
@@ -49,6 +69,7 @@
 
 -(void)setFavorites:(NSMutableArray<NSDictionary*> *)favorites {
     [self invokeObjectsMethods];
+//    [self saveToLocal];
     _favorites = favorites;
 }
 
@@ -59,6 +80,7 @@
     } else {
         [self.favorites addObject:dic];
     }
+    [self saveToLocal];
     [self invokeObjectsMethods];
 }
 
