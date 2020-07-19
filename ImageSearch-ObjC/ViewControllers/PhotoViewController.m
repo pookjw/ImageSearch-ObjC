@@ -27,7 +27,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [FavoritesModel.sharedInstance registerObject:self];
+    [self.viewModel registerObjectToModel:self];
     NSURL *image_url = [NSURL URLWithString:self.viewModel.dic[@"image_url"]];
     [self.viewModel loadImage:image_url completionHandler:^(UIImage * image){
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -38,7 +38,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [FavoritesModel.sharedInstance unregisterObject:self];
+    [self.viewModel unregisterObjectFromModel:self];
 }
 
 - (void)setup {
@@ -80,7 +80,7 @@
 }
 
 -(void)pressedStarButton {
-    [FavoritesModel.sharedInstance updateFavorite:self.viewModel.dic];
+    [self.viewModel updateFavorite:self.viewModel.dic];
 }
 
 - (void)pressedSafariButton {
@@ -90,7 +90,7 @@
 }
 
 - (void)updateFavoritedStatus {
-    if ([[FavoritesModel.sharedInstance isFavorited:self.viewModel.dic][@"favorited"] boolValue]) {
+    if ([self.viewModel isFavorited:self.viewModel.dic]) {
         self.starButton.image = [UIImage systemImageNamed:@"star.fill"];
     } else {
         self.starButton.image = [UIImage systemImageNamed:@"star"];

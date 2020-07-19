@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "FavoritesModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSDictionary *dic;
 
 -(void)loadImage:(NSURL *)url completionHandler:(void(^)(UIImage * _Nonnull))completionHandler;
+-(void)registerObjectToModel:(id<FavoritesDelegate>)object;
+-(void)unregisterObjectFromModel:(id<FavoritesDelegate>)object;
+-(void)updateFavorite:(NSDictionary *) dic;
+-(BOOL)isFavorited:(NSDictionary *) dic;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -21,4 +21,20 @@
         completionHandler(image);
     });
 }
+
+-(void)registerObjectToModel:(id<FavoritesDelegate>)object {
+    [FavoritesModel.sharedInstance registerObject:object];
+}
+
+-(void)unregisterObjectFromModel:(id<FavoritesDelegate>)object {
+    [FavoritesModel.sharedInstance unregisterObject:object];
+}
+
+-(void)updateFavorite:(NSDictionary *) dic {
+    [FavoritesModel.sharedInstance updateFavorite:dic];
+}
+
+-(BOOL)isFavorited:(NSDictionary *) dic {
+    return [[FavoritesModel.sharedInstance isFavorited:dic][@"favorited"] boolValue];
+}
 @end
