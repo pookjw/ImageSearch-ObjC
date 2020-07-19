@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SearchModel.h"
 #import "FavoritesDelegate.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSMutableArray<NSDictionary *> * _Nonnull)getFavorites;
 -(void)registerObjectToModel:(id<FavoritesDelegate>)object;
 -(BOOL)isFavorited:(NSDictionary *) dic;
+-(void)loadThumbnailImage:(NSURL *)url completionHandler:(void (^)(UIImage * _Nonnull))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

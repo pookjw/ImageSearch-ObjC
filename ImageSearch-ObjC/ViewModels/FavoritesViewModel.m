@@ -14,7 +14,16 @@
 -(NSMutableArray<NSDictionary *> * _Nonnull)getFavorites {
     return [FavoritesModel.sharedInstance favorites];
 }
+
 -(void)registerObjectToModel:(id<FavoritesDelegate>)object {
     [FavoritesModel.sharedInstance registerObject:object];
+}
+
+-(void)loadThumbnailImage:(NSURL *)url completionHandler:(void (^)(UIImage * _Nonnull))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+        UIImage * image = [UIImage imageWithData:imageData];
+        completionHandler(image);
+    });
 }
 @end

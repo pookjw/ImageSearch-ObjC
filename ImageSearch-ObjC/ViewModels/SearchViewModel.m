@@ -51,4 +51,12 @@
     return [[FavoritesModel.sharedInstance isFavorited:dic][@"favorited"] boolValue];
 }
 
+-(void)loadThumbnailImage:(NSURL *)url completionHandler:(void (^)(UIImage * _Nonnull))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: url];
+        UIImage * image = [UIImage imageWithData:imageData];
+        completionHandler(image);
+    });
+}
+
 @end

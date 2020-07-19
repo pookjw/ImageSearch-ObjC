@@ -57,18 +57,11 @@
     cell.detailTextLabel.text = doc_url;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-//    if ([[FavoriteModel.sharedInstance isFavorited:dic][@"favorited"] boolValue]) {
-//        cell.textLabel.textColor = UIColor.systemOrangeColor;
-//    } else {
-//        cell.textLabel.textColor = UIColor.labelColor;
-//    }
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: dic[@"thumbnail_url"]]];
+    [self.viewModel loadThumbnailImage:[NSURL URLWithString: [self.viewModel getFavorites][indexPath.row][@"thumbnail_url"]] completionHandler:^(UIImage * image){
         dispatch_async(dispatch_get_main_queue(), ^{
-            cell.imageView.image = [UIImage imageWithData: imageData];
+            cell.imageView.image = image;
         });
-    });
+    }];
     
     return cell;
 }
