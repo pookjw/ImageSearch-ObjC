@@ -22,6 +22,7 @@
 		F3EE276324C33A4900070D23 /* PhotoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE276224C33A4900070D23 /* PhotoViewModel.m */; };
 		F3EE276624C33A5400070D23 /* WebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE276524C33A5400070D23 /* WebViewModel.m */; };
 		F3EE276924C34A7B00070D23 /* FavoriteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3EE276824C34A7B00070D23 /* FavoriteModel.m */; };
+		F3F70C5C24C4686C0015A630 /* FavoritesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3F70C5B24C4686C0015A630 /* FavoritesViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		F3EE276724C34A7B00070D23 /* FavoriteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteModel.h; sourceTree = "<group>"; };
 		F3EE276824C34A7B00070D23 /* FavoriteModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteModel.m; sourceTree = "<group>"; };
 		F3EE276A24C34AA300070D23 /* FavoriteDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteDelegate.h; sourceTree = "<group>"; };
+		F3F70C5A24C4686C0015A630 /* FavoritesViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoritesViewModel.h; sourceTree = "<group>"; };
+		F3F70C5B24C4686C0015A630 /* FavoritesViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoritesViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 				F3EE276224C33A4900070D23 /* PhotoViewModel.m */,
 				F3EE276424C33A5400070D23 /* WebViewModel.h */,
 				F3EE276524C33A5400070D23 /* WebViewModel.m */,
+				F3F70C5A24C4686C0015A630 /* FavoritesViewModel.h */,
+				F3F70C5B24C4686C0015A630 /* FavoritesViewModel.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +236,7 @@
 				F34072E124C1A7DA003E7795 /* SearchViewController.m in Sources */,
 				F3EE276624C33A5400070D23 /* WebViewModel.m in Sources */,
 				F324E1FF24C2F05F002CA21E /* UIImage+Resize.m in Sources */,
+				F3F70C5C24C4686C0015A630 /* FavoritesViewModel.m in Sources */,
 				F3A1BC9124C1A4910023F2B9 /* main.m in Sources */,
 				F324E1F524C208C8002CA21E /* SearchViewModel.m in Sources */,
 				F3A1BC8324C1A4900023F2B9 /* SceneDelegate.m in Sources */,

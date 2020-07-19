@@ -15,22 +15,13 @@
 + (instancetype)initWithViewModel {
     SearchViewController *vc = [[SearchViewController alloc] init];
     vc.viewModel = [[SearchViewModel alloc] init];
+    [vc.viewModel registerObjectToModel:vc];
     return vc;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [FavoriteModel.sharedInstance registerObject:self];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [FavoriteModel.sharedInstance unregisterObject:self];
 }
 
 - (void)setup {
@@ -71,7 +62,7 @@
     cell.detailTextLabel.text = doc_url;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    if ([[FavoriteModel.sharedInstance isFavorited:dic][@"favorited"] boolValue]) {
+    if ([self.viewModel isFavorited:dic]) {
         cell.textLabel.textColor = UIColor.systemOrangeColor;
     } else {
         cell.textLabel.textColor = UIColor.labelColor;

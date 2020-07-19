@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FavoritesViewModel.h"
+#import "FavoriteDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FavoritesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface FavoritesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, FavoriteDelegate>
+@property FavoritesViewModel *viewModel;
 @property UITableView *tableView;
++ (instancetype)initWithViewModel;
 - (void)setup;
 @end
 

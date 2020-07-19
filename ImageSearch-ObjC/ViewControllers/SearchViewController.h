@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchViewModel.h"
-#import "FavoriteModel.h"
+#import "FavoriteDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

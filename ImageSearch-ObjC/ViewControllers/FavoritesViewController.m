@@ -7,9 +7,17 @@
 //
 
 #import "FavoritesViewController.h"
-#import "FavoriteModel.h"
+#import "PhotoViewController.h"
+#import "UIImage+Resize.h"
 
 @implementation FavoritesViewController
+
++ (instancetype)initWithViewModel {
+    FavoritesViewController *vc = [[FavoritesViewController alloc] init];
+    vc.viewModel = [[FavoritesViewModel alloc] init];
+    [vc.viewModel registerObjectToModel:vc];
+    return vc;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,17 +42,59 @@
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = @"Test";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    NSDictionary *dic = [self.viewModel getFavorites][indexPath.row];
+    UIImage *placeholder = [UIImage imageWithImage:[[UIImage alloc] init] scaledToFillSize:CGSizeMake(57, 57)];
+    NSString *display_sitename = dic[@"display_sitename"];
+    NSString *doc_url = dic[@"doc_url"];
+    
+    cell.imageView.image = placeholder;
+    if ([display_sitename isEqualToString:@""]) {
+        cell.textLabel.text = @"(no display_sitename)";
+    } else {
+        cell.textLabel.text = display_sitename;
+    }
+    cell.detailTextLabel.text = doc_url;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+//    if ([[FavoriteModel.sharedInstance isFavorited:dic][@"favorited"] boolValue]) {
+//        cell.textLabel.textColor = UIColor.systemOrangeColor;
+//    } else {
+//        cell.textLabel.textColor = UIColor.labelColor;
+//    }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: dic[@"thumbnail_url"]]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.imageView.image = [UIImage imageWithData: imageData];
+        });
+    });
+    
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return [[self.viewModel getFavorites] count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PhotoViewController *viewController = [PhotoViewController initWithViewModel];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    
+    viewController.viewModel.dic = [self.viewModel getFavorites][indexPath.row];
+    [self presentViewController:navigationController animated:YES completion:^{
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }];
+//    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//    [cell setSelected:NO animated:YES];
+}
+
+- (void)reloadFavoritesWhenChanged {
+    [self.tableView reloadData];
 }
 
 @end

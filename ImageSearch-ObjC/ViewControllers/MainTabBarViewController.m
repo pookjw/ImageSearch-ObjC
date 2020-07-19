@@ -19,7 +19,7 @@
 
 - (void)setup {
     self.searchViewController = [SearchViewController initWithViewModel];
-    self.favoritesViewController = [[FavoritesViewController alloc] init];
+    self.favoritesViewController = [FavoritesViewController initWithViewModel];
     
     self.firstNavigationController = [[UINavigationController alloc] initWithRootViewController:self.searchViewController];
     self.secondNavigationController = [[UINavigationController alloc] initWithRootViewController:self.favoritesViewController];

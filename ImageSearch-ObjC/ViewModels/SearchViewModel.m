@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewModel.h"
+#import "FavoriteModel.h"
 
 @implementation SearchViewModel
 -(instancetype)init {
@@ -36,6 +37,18 @@
 
 -(void)request:(NSString *)text pageAt:(NSNumber *)page completionHandler:(void (^)(NSDictionary * _Nonnull))completionHandler errorHandler:(void (^)(NSError * _Nonnull))errorHandler {
     [self.model request:text pageAt:page completionHandler:completionHandler errorHandler:errorHandler];
+}
+
+-(NSMutableArray<NSDictionary *> * _Nonnull)getFavorites {
+    return [FavoriteModel.sharedInstance favorites];
+}
+
+-(void)registerObjectToModel:(id<FavoriteDelegate>)object {
+    [FavoriteModel.sharedInstance registerObject:object];
+}
+
+-(BOOL)isFavorited:(NSDictionary *) dic {
+    return [[FavoriteModel.sharedInstance isFavorited:dic][@"favorited"] boolValue];
 }
 
 @end
