@@ -17,6 +17,8 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
+    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+    
     UIWindowScene *windowScene = scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
     MainTabBarViewController *vc = [[MainTabBarViewController alloc] init];
