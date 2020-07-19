@@ -7,14 +7,14 @@
 //
 
 #import "FavoritesViewModel.h"
-#import "FavoriteModel.h"
-#import "FavoriteDelegate.h"
+#import "FavoritesModel.h"
+#import "FavoritesDelegate.h"
 
 @implementation FavoritesViewModel
 -(NSMutableArray<NSDictionary *> * _Nonnull)getFavorites {
-    return [FavoriteModel.sharedInstance favorites];
+    return [FavoritesModel.sharedInstance favorites];
 }
--(void)registerObjectToModel:(id<FavoriteDelegate>)object {
-    [FavoriteModel.sharedInstance registerObject:object];
+-(void)registerObjectToModel:(id<FavoritesDelegate>)object {
+    [FavoritesModel.sharedInstance registerObject:object];
 }
 @end

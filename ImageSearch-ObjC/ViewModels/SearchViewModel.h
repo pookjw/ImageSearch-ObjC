@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SearchModel.h"
-#import "FavoriteDelegate.h"
+#import "FavoritesDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property SearchModel *model;
 -(void)request:(NSString *)text pageAt:(NSNumber *)page completionHandler:(void (^)(NSDictionary * _Nonnull))completionHandler errorHandler:(void (^)(NSError * _Nonnull))errorHandler;
 -(NSMutableArray<NSDictionary *> * _Nonnull)getFavorites;
--(void)registerObjectToModel:(id<FavoriteDelegate>)object;
+-(void)registerObjectToModel:(id<FavoritesDelegate>)object;
 -(BOOL)isFavorited:(NSDictionary *) dic;
 @end
 

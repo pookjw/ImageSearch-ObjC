@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SearchViewModel.h"
-#import "FavoriteDelegate.h"
+#import "FavoritesDelegate.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating, FavoriteDelegate>
+@interface SearchViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchResultsUpdating, FavoritesDelegate>
 @property UITableView *tableView;
 @property UISearchController *searchController;
 @property SearchViewModel *viewModel;

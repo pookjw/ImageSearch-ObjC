@@ -1,14 +1,14 @@
 //
-//  FavoriteModel.m
+//  FavoritesModel.m
 //  ImageSearch-ObjC
 //
 //  Created by pook on 7/19/20.
 //  Copyright © 2020 jinwoopeter. All rights reserved.
 //
 
-#import "FavoriteModel.h"
+#import "FavoritesModel.h"
 
-@implementation FavoriteModel
+@implementation FavoritesModel
 
 -(instancetype)init {
     self.objects = [[NSMutableArray alloc] init];
@@ -17,21 +17,21 @@
 }
 
 +(instancetype)sharedInstance {
-    static FavoriteModel *sharedInstance = nil;
+    static FavoritesModel *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[FavoriteModel alloc] init];
+        sharedInstance = [[FavoritesModel alloc] init];
     });
     return sharedInstance;
 }
 
 -(void)invokeObjectsMethods {
-    [self.objects enumerateObjectsUsingBlock:^(id<FavoriteDelegate> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
+    [self.objects enumerateObjectsUsingBlock:^(id<FavoritesDelegate> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
         [obj reloadFavoritesWhenChanged];
     }];
 }
 
--(void)registerObject:(id<FavoriteDelegate>)object {
+-(void)registerObject:(id<FavoritesDelegate>)object {
     if ([self.objects containsObject:object]) {
         NSLog(@"%@ is alreay registered!", object);
         return;
@@ -39,7 +39,7 @@
     [self.objects insertObject:object atIndex:self.objects.count];
 }
 
--(void)unregisterObject:(id<FavoriteDelegate>)object {
+-(void)unregisterObject:(id<FavoritesDelegate>)object {
     if (![self.objects containsObject:object]) {
         NSLog(@"%@ is not registered!", object);
         return;

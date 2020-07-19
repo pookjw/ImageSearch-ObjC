@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewModel.h"
-#import "FavoriteModel.h"
+#import "FavoritesModel.h"
 
 @implementation SearchViewModel
 -(instancetype)init {
@@ -40,15 +40,15 @@
 }
 
 -(NSMutableArray<NSDictionary *> * _Nonnull)getFavorites {
-    return [FavoriteModel.sharedInstance favorites];
+    return [FavoritesModel.sharedInstance favorites];
 }
 
--(void)registerObjectToModel:(id<FavoriteDelegate>)object {
-    [FavoriteModel.sharedInstance registerObject:object];
+-(void)registerObjectToModel:(id<FavoritesDelegate>)object {
+    [FavoritesModel.sharedInstance registerObject:object];
 }
 
 -(BOOL)isFavorited:(NSDictionary *) dic {
-    return [[FavoriteModel.sharedInstance isFavorited:dic][@"favorited"] boolValue];
+    return [[FavoritesModel.sharedInstance isFavorited:dic][@"favorited"] boolValue];
 }
 
 @end

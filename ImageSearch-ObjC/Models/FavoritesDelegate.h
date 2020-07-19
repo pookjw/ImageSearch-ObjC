@@ -1,5 +1,5 @@
 //
-//  FavoriteDelegate.h
+//  FavoritesDelegate.h
 //  ImageSearch-ObjC
 //
 //  Created by pook on 7/19/20.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol FavoriteDelegate <NSObject>
+@protocol FavoritesDelegate <NSObject>
 -(void)reloadFavoritesWhenChanged;
 @end
 

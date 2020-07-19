@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotoViewModel.h"
-#import "FavoriteModel.h"
+#import "FavoritesModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PhotoViewController : UIViewController<FavoriteDelegate>
+@interface PhotoViewController : UIViewController<FavoritesDelegate>
 
 @property PhotoViewModel *viewModel;
 
