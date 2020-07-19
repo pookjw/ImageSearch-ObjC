@@ -12,9 +12,10 @@
 
 @implementation SearchViewController
 
-- (instancetype)init {
-    self.viewModel = [[SearchViewModel alloc] init];
-    return self;
++ (instancetype)initWithViewModel {
+    SearchViewController *vc = [[SearchViewController alloc] init];
+    vc.viewModel = [[SearchViewModel alloc] init];
+    return vc;
 }
 
 - (void)viewDidLoad {
@@ -95,7 +96,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    PhotoViewController *viewController = [[PhotoViewController alloc] init];
+    PhotoViewController *viewController = [PhotoViewController initWithViewModel];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     
     viewController.viewModel.dic = self.viewModel.searchResult[@"documents"][indexPath.row];

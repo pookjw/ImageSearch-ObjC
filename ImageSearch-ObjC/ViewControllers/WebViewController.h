@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UIBarButtonItem *shareButton;
 @property UIBarButtonItem *safariButton;
 
++ (instancetype)initWithViewModel;
 -(void)setup;
 -(void)donebuttonPressed;
 -(void)pressedBackButton;

@@ -9,10 +9,10 @@
 #import "WebViewController.h"
 
 @implementation WebViewController
-
--(instancetype)init {
-    self.viewModel = [[WebViewModel alloc] init];
-    return self;
++ (instancetype)initWithViewModel {
+    WebViewController *vc = [[WebViewController alloc] init];
+    vc.viewModel = [[WebViewModel alloc] init];
+    return vc;
 }
 
 - (void)dealloc {

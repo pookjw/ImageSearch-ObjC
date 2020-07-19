@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UIBarButtonItem *secondFlexibleItem;
 @property UIBarButtonItem *safariButton;
 
++ (instancetype)initWithViewModel;
 -(void)setup;
 -(void)pressedDoneButton;
 -(void)pressedStarButton;

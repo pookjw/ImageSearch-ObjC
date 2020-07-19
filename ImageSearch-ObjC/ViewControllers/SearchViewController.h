@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property UITableView *tableView;
 @property UISearchController *searchController;
 @property SearchViewModel *viewModel;
++ (instancetype)initWithViewModel;
 -(void)setup;
 - (void)reloadFavoritesWhenChanged;
 @end

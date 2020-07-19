@@ -10,10 +10,10 @@
 #import "WebViewController.h"
 
 @implementation PhotoViewController
-
-- (instancetype)init {
-    self.viewModel = [[PhotoViewModel alloc] init];
-    return self;
++ (instancetype)initWithViewModel {
+    PhotoViewController *vc = [[PhotoViewController alloc] init];
+    vc.viewModel = [[PhotoViewModel alloc] init];
+    return vc;
 }
 
 - (void)dealloc {
@@ -84,7 +84,7 @@
 }
 
 - (void)pressedSafariButton {
-    WebViewController *vc = [[WebViewController alloc] init];
+    WebViewController *vc = [WebViewController initWithViewModel];
     vc.viewModel.dic = self.viewModel.dic;
     [self.navigationController pushViewController:vc animated:YES];
 }

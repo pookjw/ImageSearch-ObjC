@@ -11,10 +11,6 @@
 
 @implementation FavoritesViewController
 
-- (instancetype)init {
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
