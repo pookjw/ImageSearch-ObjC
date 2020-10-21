@@ -24,7 +24,13 @@
 
 - FavoritesViewController 부분만 UITableView 대신 UICollectionView를 써보기
 
-## 사진
+## 다른 ImageSearch
+
+- [ImageSearch-SwiftUI](https://github.com/pookjw/ImageSearch-SwiftUI) : Swift로 작성 및 SwiftUI, Combine 사용
+
+- [ImageSearch-Swift](https://github.com/pookjw/ImageSearch-Swift) : Swift로 작성 및 UIKit, RxSwift, RealmSwift 사용
+
+## 스크린샷
 
 ![1](screenshots/1.png)
 
