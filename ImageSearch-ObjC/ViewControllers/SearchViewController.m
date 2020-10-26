@@ -21,13 +21,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self setup];
 }
 
 - (void)setup {
     self.title = @"Search";
-    self.navigationController.navigationBar.prefersLargeTitles = YES;
-    self.view.backgroundColor = UIColor.systemBackgroundColor;
+    self.navigationController.navigationBar.prefersLargeTitles = NO;
+    self.view.backgroundColor = UIColor.blueColor;
+    
     
     self.tableView = [[UITableView alloc] init];
     //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -43,6 +48,26 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.navigationItem.searchController = self.searchController;
     self.searchController.searchBar.delegate = self;
+        
+    
+    self.navigationController.navigationBar.barTintColor = UIColor.redColor;
+//    self.navigationController.navigationBar.tintColor = UIColor.redColor;
+    self.navigationController.navigationBar.backgroundColor = UIColor.redColor;
+//    self.searchController.searchBar.barTintColor = UIColor.redColor;
+//    self.searchController.searchBar.tintColor = UIColor.redColor;
+    self.searchController.searchBar.backgroundColor = UIColor.redColor;
+    [self.navigationController.navigationBar setTranslucent:NO];
+    self.view.backgroundColor = UIColor.redColor;
+    
+    UIView *tempView = [UIView new];
+    [self.view.superview addSubview:tempView];
+    NSLog(@"%@", self.view.superview);
+    tempView.translatesAutoresizingMaskIntoConstraints = NO;
+    [tempView.topAnchor constraintEqualToAnchor:self.view.superview.topAnchor].active = YES;
+    [tempView.leadingAnchor constraintEqualToAnchor:self.view.superview.leadingAnchor].active = YES;
+    [tempView.trailingAnchor constraintEqualToAnchor:self.view.superview.trailingAnchor].active = YES;
+    [tempView.heightAnchor constraintEqualToConstant:60].active = YES;
+    tempView.backgroundColor = UIColor.redColor;
 }
 
 
